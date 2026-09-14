@@ -1,0 +1,6 @@
+pull_request_rules:
+  - name: HackerOne reverse-fork update control
+    conditions:
+      - label = h1-update-control
+    actions:
+      update:
