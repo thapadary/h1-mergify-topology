@@ -1,1 +1,25 @@
-extends: h1-mergify-lifecycle-renamed
+scopes:
+  source:
+    manual:
+
+merge_queue:
+  mode: parallel
+  max_parallel_checks: 2
+
+queue_rules:
+  - name: default
+    batch_size: 1
+    merge_conditions:
+      - check-success = h1-manual-gate
+
+pull_request_rules:
+  - name: HackerOne reverse-fork update control
+    conditions:
+      - label = h1-update-control
+    actions:
+      update:
+  - name: HackerOne cross-account scope queue control
+    conditions:
+      - label = h1-cross-scope-queue
+    actions:
+      queue:
